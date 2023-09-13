@@ -10,8 +10,9 @@ import NavMenu from './components/Menu/NavMenu'
 const App = () => {
   return (
     <>
-      <NavMenu></NavMenu>
+
       <BrowserRouter>
+        <NavMenu></NavMenu>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='pokedex' element={<Pokedex />}></Route>
