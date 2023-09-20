@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Pokemon } from "../types/datatypes";
 
-export const fetchPokemonList = async () => {
-    const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+export const fetchPokemonList = async (offset: number) => {
+
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`);
     const result = await response.data;
     const pokemon: Pokemon[] = [];
 
@@ -16,8 +17,6 @@ export const fetchPokemonList = async () => {
 
     return pokemon;
 }
-
-fetchPokemonList();
 
 export const fetchPokemonData = async (name: string) => {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
