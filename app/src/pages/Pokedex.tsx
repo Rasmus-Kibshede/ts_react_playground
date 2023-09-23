@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { fetchPokemonList } from '../api/pokemon'
-import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Pagination, Stack, Typography } from '@mui/material';
-import { Pokemon } from '../types/datatypes';
-import { useNavigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { Box, Grid, Pagination } from '@mui/material';
+import { Pokemon as PokemonDatatype } from '../types/datatypes';
+// import { useNavigate } from 'react-router-dom';
+import PokemonCard from '../components/PokemonCard/PokemonCard';
+import { Link } from 'react-router-dom';
 
 const Pokedex = () => {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  const [pokemonList, setPokemonList] = useState<PokemonDatatype[]>([]);
   const [pagination, setPagination] = useState<number>(0);
 
   const loadPokemon = async () => {
     const response = await fetchPokemonList(pagination);
     console.log(pagination);
-    setPokemon(response);
-    console.log(<Outlet></Outlet>);
-
+    setPokemonList(response);
   }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const navigateToPage = (page: string) => {
-    navigate(page.toLocaleLowerCase());
-  }
+  // const navigateToPage = (page: string) => {
+  //   navigate(page.toLocaleLowerCase());
+  // }
 
   useEffect(() => {
     loadPokemon();
@@ -31,29 +30,11 @@ const Pokedex = () => {
     <>
       <Box sx={{ width: '100%', margin: '20px 0px' }}>
         <Grid container rowSpacing={10}>
-          {pokemon.map((p) => (
+          {pokemonList.map((p) => (
             <Grid item xs={3} key={p.id} maxWidth={10}>
-              <Card className='max-w-sm m-auto'>
-                <CardActionArea onClick={() => navigateToPage(`/pokedex/${p.name}`)}>
-                  <CardMedia
-                    component="img"
-                    height="50px"
-                    src={p.sprites.front_default}
-                    alt={'pokemon ' + p.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {p.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Weight: {p.weight} pounds
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Height: {p.height} feet
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <Link to={`/pokedex/${p.name}`}>
+                <PokemonCard pokemon={p} />
+              </Link>
             </Grid>
           ))}
           <Grid>

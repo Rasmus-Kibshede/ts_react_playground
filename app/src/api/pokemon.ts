@@ -23,3 +23,9 @@ export const fetchPokemonData = async (name: string) => {
     const pokemon: Pokemon = response.data;
     return pokemon;
 }
+
+export const fetchPokemon = async (name: string) => {
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
+    const pokemon: Pokemon = response.data;
+    return pokemon;
+}

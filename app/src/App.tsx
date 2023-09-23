@@ -2,6 +2,7 @@ import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } fro
 import Home from './pages/Home'
 import Pokedex from './pages/Pokedex'
 import NavMenu from './components/Menu/NavMenu'
+import { PokemonInfo } from './pages/PokemonInfo/PokemonInfo'
 
 
 // React routing tutorial
@@ -9,32 +10,17 @@ import NavMenu from './components/Menu/NavMenu'
 
 const App = () => {
 
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <Home />,
-  //   },
-  //   {
-  //     path: "pokedex",
-  //     element: <Pokedex />
-  //   },
-  // ]);
-
-
   return (
     <>
-      {/* <NavMenu></NavMenu>
-      <RouterProvider router={router} /> */}
 
       <BrowserRouter>
-        <NavMenu></NavMenu>
+        <NavMenu />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='pokedex'>
             <Route index element={<Pokedex />}></Route>
-            <Route path=':string' element={<Pokedex />}></Route>
+            <Route path=':name' element={<PokemonInfo />}></Route>
           </Route>
-
         </Routes>
       </BrowserRouter>
     </>
