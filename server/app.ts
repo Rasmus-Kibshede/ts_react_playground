@@ -1,29 +1,18 @@
-// Uses the dotenv package for easy handling of envs
-import dotenv from "dotenv/config";
-// dotenv.config();
-// can be done with dotenv/config or delete config and use dotenv.config()
+import 'dotenv/config'; // Import the dotenv config
+import express from 'express'; // Import the express in typescript file
 
-import express from "express";
+const app = express(); // Initialize the express engine
 
-const app = express();
-
-app.use(express.json());
-
-import cors from "cors";
-app.use(cors());
-
-
-// Routes here
-
-app.get("/pokemon", async (req, res) => {
-    const names = ['Pikatu', 'Charmander', 'Bulbazor', 'Weedle'];
-
-    res.send({ data: names });
+// Handling '/' Request
+app.get('/', (req, res) => {
+    res.send('TypeScript With Express');
 });
 
 
+const PORT = process.env.PORT || 3000;
 
-
-
-const PORT = 8080 || process.env.PORT;
-app.listen(PORT, () => console.log('Server is running on port', PORT));
+// Listen to the port
+app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`App: http://localhost:${PORT}/`);
+});
