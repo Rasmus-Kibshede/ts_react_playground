@@ -1,7 +1,7 @@
-import mysql from 'mysql2/promise';
+import mysql, { PoolOptions } from 'mysql2/promise';
 
-// Create the connection pool. The pool-specific settings are the defaults
-const connection = mysql.createPool({
+
+const options: PoolOptions = {
   host: process.env.L_HOST,
   user: process.env.L_USERNAME,
   database: process.env.L_DATABASE,
@@ -14,6 +14,9 @@ const connection = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0
-});
+};
+
+// Create the connection pool. The pool-specific settings are the defaults
+const connection = mysql.createPool(options);
 
 export default connection;

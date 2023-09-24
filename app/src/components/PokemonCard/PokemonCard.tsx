@@ -1,5 +1,5 @@
 import { CardActionArea, CardMedia, CardContent, Card, Typography } from '@mui/material'
-import { Pokemon } from '../../types/datatypes'
+import { Pokemon } from '../../types/pokemonDatatype'
 
 const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
     return (

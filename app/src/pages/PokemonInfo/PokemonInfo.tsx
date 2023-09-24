@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { fetchPokemon } from '../../api/pokemon';
-import { Pokemon } from '../../types/datatypes';
+import { Pokemon } from '../../types/pokemonDatatype';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 
 export const PokemonInfo = () => {

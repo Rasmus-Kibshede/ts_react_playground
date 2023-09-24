@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Pokemon } from "../types/datatypes";
+import { Pokemon } from "../types/pokemonDatatype";
 
 export const fetchPokemonList = async (offset: number) => {
 

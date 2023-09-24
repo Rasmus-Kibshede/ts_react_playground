@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchPokemonList } from '../api/pokemon'
 import { Box, Grid, Pagination } from '@mui/material';
-import { Pokemon as PokemonDatatype } from '../types/datatypes';
+import { Pokemon as PokemonDatatype } from '../types/pokemonDatatype';
 // import { useNavigate } from 'react-router-dom';
 import PokemonCard from '../components/PokemonCard/PokemonCard';
 import { Link } from 'react-router-dom';
