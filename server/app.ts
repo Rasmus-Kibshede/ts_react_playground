@@ -8,6 +8,8 @@ app.get('/', (req, res) => {
     res.send('TypeScript With Express');
 });
 
+import userRouter from './routes/userRoute';
+app.use(userRouter);
 
 const PORT = process.env.PORT || 3000;
 
