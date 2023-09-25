@@ -15,23 +15,28 @@ router.post('/login', async (req, res) => {
     if (rows.length > 0) {
         const user = rows[0];
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-            expiresIn: '1d'
+        const bearerToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
+            expiresIn: '1d',
+
         });
-        res.status(200).json({ token });
+
+        res.header('Authorization', `Bearer ${bearerToken}`);
+
+        return res.status(200).json({ bearerToken });
     } else {
-        res.status(400).json({ message: 'Invalid Credentials' });
+        return res.status(400).json({ message: 'Invalid Credentials' });
     }
 
 });
 
 const verifyJwt = (req: any, res: any, next: any) => {
-    const token = req.headers['token'];
-    
-    if (!token) {
+    const bearerToken = req.headers.authorization?.split(' ')[1];
+
+
+    if (!bearerToken) {
         return res.status(401).json({ auth: false, message: 'No token provided.' });
     } else {
-        jwt.verify(token, process.env.JWT_SECRET as string, (err: any, decoded: any) => {
+        jwt.verify(bearerToken, process.env.JWT_SECRET as string, (err: any, decoded: any) => {
             if (err) {
                 return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
             }
@@ -42,7 +47,7 @@ const verifyJwt = (req: any, res: any, next: any) => {
 };
 
 router.get('/checkauth', verifyJwt, async (req, res) => {
-    res.status(200).json({ auth: true });
+    return res.status(200).json({ auth: true });
 });
 
 export default router;

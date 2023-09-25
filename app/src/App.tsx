@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Pokedex from './pages/Pokedex'
 import NavMenu from './components/Menu/NavMenu'
@@ -12,7 +12,6 @@ const App = () => {
 
   return (
     <>
-
       <BrowserRouter>
         <NavMenu />
         <Routes>
